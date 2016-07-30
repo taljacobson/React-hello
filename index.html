@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>React</title>
+    <script type="text/javascript" src="build/react.js"></script>
+    <script type="text/javascript" src="build/react-dom.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="area">
+      <script type="text/babel">
+        var HelloWorld = React.createClass({
+
+          propTypes: {
+            name: React.PropTypes.string,
+            isPerson: React.PropTypes.bool
+
+          },
+
+          getDefaultProps: function() {
+            return {
+              name: 'noam'
+            }
+          },
+
+          render: function() {
+            let greeting = "world";
+
+            console.log(this.props.isPerson)
+            if (this.props.isPerson) {
+              greeting = (<Person name={this.props.name}/>)
+            }
+
+            return (
+              <h1>Hello {greeting}</h1>
+            )
+          }
+        });
+
+        var Person = React.createClass({
+
+          propTypes: {
+            name: React.PropTypes.string.isRequired
+          },
+
+          render: function() {
+            return (
+              <span>{this.props.name}</span>
+            )
+          }
+        });
+
+        ReactDOM.render(
+          <HelloWorld  name="tal" isPerson={true} />,
+          document.getElementById('area')
+        )
+      </script>
+    </div>
+  </body>
+</html>
